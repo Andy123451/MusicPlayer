@@ -10,7 +10,7 @@ import edu.vanier.template.tests.*;
  * application. A commented-out line suggests the potential to launch another
  * class (e.g., {@link Driver}) in the future.
  */
-public class Launcher {ddd
+public class Launcher {
 
     /**
      * The entry point of the application that invokes the

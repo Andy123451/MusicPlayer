@@ -14,9 +14,9 @@ import org.slf4j.LoggerFactory;
  *
  * @author frostybee
  */
-public class SecondaryFXMLController {
+public class ManagePlaylists {
 
-    private final static Logger logger = LoggerFactory.getLogger(SecondaryFXMLController.class);
+    private final static Logger logger = LoggerFactory.getLogger(ManagePlaylists.class);
 
     @FXML
     Button btnSwitchScene;

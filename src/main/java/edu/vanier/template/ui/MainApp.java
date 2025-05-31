@@ -2,7 +2,8 @@ package edu.vanier.template.ui;
 
 import edu.vanier.template.controllers.MainAppFXMLController;
 import edu.vanier.template.controllers.SceneController;
-import edu.vanier.template.controllers.SecondaryFXMLController;
+import edu.vanier.template.controllers.ManagePlaylists;
+import edu.vanier.template.controllers.ManageSongs;
 import edu.vanier.template.helpers.FxUIHelper;
 import java.io.IOException;
 import java.util.logging.Level;
@@ -27,7 +28,8 @@ public class MainApp extends Application {
     // The FXML file name of the primary scene.
     public static final String MAINAPP_SCENE = "MainApp_layout";
     // The FXML file name of the secondary scene.
-    public static final String SECONDARY_SCENE = "secondary_layout";
+    public static final String ManagePlaylists = "ManagePlaylists";
+    public static final String ManageSongs = "ManageSongs";
     private final static Logger logger = LoggerFactory.getLogger(MainApp.class);
     private static Scene scene;
     private static SceneController sceneController;
@@ -45,7 +47,7 @@ public class MainApp extends Application {
             logger.info("Bootstrapping the application...");
             // Load the scene of the primary stage.
             Parent root = FxUIHelper.loadFXML(MAINAPP_SCENE, new MainAppFXMLController());
-            scene = new Scene(root, 640, 480);
+            scene = new Scene(root);
             // Add the primary scene to the scene-switching controller.
             sceneController = new SceneController(scene);
             sceneController.addScene(MAINAPP_SCENE, root);
@@ -62,32 +64,25 @@ public class MainApp extends Application {
             java.util.logging.Logger.getLogger(MainApp.class.getName()).log(Level.SEVERE, null, ex);
         }
     }
-
-    /**
-     * Switches between scenes based on the provided FXML file name. This method
-     * checks the type of scene (primary or secondary) and either activates an
-     * existing scene or loads the specified FXML scene for the first time and
-     * adds it to the scene controller.
-     *
-     * @param fxmlFileName the name of the FXML file that represents the scene
-     * to switch to.
-     */
+ 
     public static void switchScene(String fxmlFileName) {
         try {
             if (fxmlFileName.equals(MAINAPP_SCENE)) {
-                // No need to register the primary scene as it 
-                // was already done in the start method.                
                 sceneController.activateScene(fxmlFileName);
 
-            } else if (fxmlFileName.equals(SECONDARY_SCENE)) {
+            } else if (fxmlFileName.equals(ManagePlaylists)) {
                 if (!sceneController.sceneExists(fxmlFileName)) {
-                    // Instantiate the corresponding FXML controller if the 
-                    // specified scene is being loaded for the frist time.
-                    SecondaryFXMLController controller = new SecondaryFXMLController();
+                    ManagePlaylists controller = new ManagePlaylists();
                     Parent root = FxUIHelper.loadFXML(fxmlFileName, controller);
-                    sceneController.addScene(SECONDARY_SCENE, root);
+                    sceneController.addScene(ManagePlaylists, root);
                 }
-                // The scene has been previously added, we active it.
+                sceneController.activateScene(fxmlFileName);
+            } else if (fxmlFileName.equals(ManageSongs)) {
+                if (!sceneController.sceneExists(fxmlFileName)) {
+                    ManageSongs controller = new ManageSongs();
+                    Parent root = FxUIHelper.loadFXML(fxmlFileName, controller);
+                    sceneController.addScene(ManageSongs, root);
+                }
                 sceneController.activateScene(fxmlFileName);
             }
             //TODO: You can register or activate additional scenes here, 

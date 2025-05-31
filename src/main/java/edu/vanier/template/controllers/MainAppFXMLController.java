@@ -1,5 +1,6 @@
 package edu.vanier.template.controllers;
 
+import SongObject.AddSong;
 import edu.vanier.template.ui.MainApp;
 import javafx.event.Event;
 import javafx.fxml.FXML;
@@ -20,30 +21,30 @@ public class MainAppFXMLController {
     private final static Logger logger = LoggerFactory.getLogger(MainAppFXMLController.class);
 
     @FXML
-    Button btnPlay;
+    Button btnSongs;
     @FXML
-    Button btnSwitchScene;
+    Button btnPlaylists;
 
     @FXML
     public void initialize() {
+        AddSong.addSongs();
         logger.info("Initializing MainAppController...");
-        btnPlay.setOnAction(this::handleClickMe);
-        btnSwitchScene.setOnAction(this::loadSecondaryScene);
+        btnSongs.setOnAction(this::Songs);
+        btnPlaylists.setOnAction(this::Playlists);
         addFontIcons();
     }
 
-    private void handleClickMe(Event e) {
-        System.out.println("Playing...");
-        logger.info("Play button has been clicked...");
+    private void Songs(Event e) {
+        MainApp.switchScene(MainApp.ManageSongs);
     }
 
-    private void loadSecondaryScene(Event e) {
-        MainApp.switchScene(MainApp.SECONDARY_SCENE);
-        logger.info("Loaded the secondary scene...");
+    private void Playlists(Event e) {
+        MainApp.switchScene(MainApp.ManagePlaylists);
     }
 
+    
     private void addFontIcons() {
-        // @see: https://kordamp.org/ikonli/cheat-sheet-fontawesome5.html
+        /*// @see: https://kordamp.org/ikonli/cheat-sheet-fontawesome5.html
         FontIcon playIcon = new FontIcon(FontAwesomeRegular.SHARE_SQUARE);
         // Alternatively, Material Design icon set can be used as follows.
         // @see: https://kordamp.org/ikonli/#_materialdesign2_latest
@@ -53,6 +54,6 @@ public class MainAppFXMLController {
         btnPlay.setStyle("-fx-font-size: 16px;");
         FontIcon switchIcon = new FontIcon(MaterialDesignA.ATOM);
         btnSwitchScene.setGraphic(switchIcon);
-        btnSwitchScene.setStyle("-fx-font-size: 16px;");
+        btnSwitchScene.setStyle("-fx-font-size: 16px;");*/
     }
 }
