@@ -1,3 +1,9 @@
+Personal music player. Upload .mp3 files to use uninterrupted music player.
+Include common features found in most music playing softwares such as shuffling. 
+
+
+Notes from template below
+
 # JavaFX Project Template
 
 This is a non-modular, Gradle-based project skeleton for creating JavaFX applications.
